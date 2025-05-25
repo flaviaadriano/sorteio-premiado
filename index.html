@@ -1,0 +1,78 @@
+<!-- Rifa com botão de pagamento Mercado Pago + QR Code + Contador -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorteio Premiado 2025</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111827;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .button {
+      background-color: #2563eb;
+      color: white;
+      font-weight: bold;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    .button:hover {
+      background-color: #1d4ed8;
+    }
+    .qr-code img {
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    #countdown {
+      font-size: 24px;
+      color: #facc15;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="font-size: 28px; margin-bottom: 20px;">🎁 Participe do Sorteio Premiado 2025!</h2>
+  <a href="https://link.mercadopago.com.br/sorteiopremiado2025" target="_blank" class="button">
+    🔒 Finalizar Pagamento no Mercado Pago
+  </a>
+  <p style="font-size: 14px; margin-top: 8px;">Você será redirecionado para uma página segura do Mercado Pago.</p>
+
+  <div class="qr-code">
+    <img src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Flink.mercadopago.com.br%2Fsorteiopremiado2025&chs=180x180&choe=UTF-8&chld=L|2" alt="QR Code Mercado Pago" />
+    <p style="margin-top: 10px;">Escaneie com a câmera do celular para pagar via Pix!</p>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <h3 style="font-size: 18px; margin-bottom: 10px;">⏰ Faltam:</h3>
+    <div id="countdown"></div>
+  </div>
+
+  <script>
+    const endDate = new Date("2025-06-30T20:00:00").getTime();
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = endDate - now;
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "SORTEIO ENCERRADO";
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+</body>
+</html>
